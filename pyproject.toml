@@ -8,6 +8,7 @@ authors = ["Artem Burenin <burenotti@gmail.com>"]
 python = "^3.10"
 pydantic = "^1.9.0"
 loguru = "^0.5.3"
+aiofiles = "^0.8.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"

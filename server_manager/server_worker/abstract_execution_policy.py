@@ -25,7 +25,7 @@ class AbstractAsyncReader(abc.ABC):
 
 	@abc.abstractmethod
 	@property
-	def eof(self) -> bool:
+	def at_eof(self) -> bool:
 		pass
 
 	@abc.abstractmethod
@@ -37,11 +37,15 @@ class AbstractAsyncReader(abc.ABC):
 class AbstractAsyncWriter(abc.ABC):
 
 	@abc.abstractmethod
-	async def write(self, data: bytes) -> int:
+	async def write(self, data: bytes) -> None:
 		pass
 
 	@abc.abstractmethod
-	async def write_line(self, data: bytes) -> int:
+	async def write_lines(self, data: bytes) -> None:
+		pass
+
+	@abc.abstractmethod
+	async def close(self) -> None:
 		pass
 
 	@abc.abstractmethod
@@ -51,12 +55,7 @@ class AbstractAsyncWriter(abc.ABC):
 
 	@abc.abstractmethod
 	@property
-	def eof(self) -> bool:
-		pass
-
-	@abc.abstractmethod
-	@property
-	def closed(self):
+	def is_closed(self) -> bool:
 		pass
 
 
@@ -80,4 +79,3 @@ class AbstractExecutionPolicy(abc.ABC):
 	@property
 	def environment(self) -> dict[str, str]:
 		pass
-	

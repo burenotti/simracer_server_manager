@@ -40,6 +40,7 @@ class TaskAwaiter:
 			try:
 				task: Task = Task.parse_raw(message.body, encoding='utf-8')
 				loguru.logger.info('Processing task #{}'.format(task.id))
+				return task
 			except (json.JSONDecodeError, pydantic.ValidationError) as error:
 				await self.process_invalid_message(message, error)
 
@@ -59,6 +60,8 @@ class TaskAwaiter:
 		loguru.logger.info("Listening tasks queue")
 		async with queue.iterator() as queue_iter:
 			async for message in queue_iter:
-				await self.process_task(message)
+				task = await self.process_task(message)
+				yield task
+
 
 		await connection.close()

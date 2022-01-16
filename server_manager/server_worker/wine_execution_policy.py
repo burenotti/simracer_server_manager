@@ -19,7 +19,7 @@ from subprocess_async_pipes import (
 )
 
 if TYPE_CHECKING:
-	from .server_worker import AbstractServerWorker
+	from .abstract_server_worker import AbstractServerWorker
 
 
 class WineExecutionPolicy(AbstractExecutionPolicy):

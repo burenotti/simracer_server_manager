@@ -80,8 +80,6 @@ class WineExecutionPolicy(AbstractExecutionPolicy):
 			loop=loop,
 		)
 
-		await self._context.acquire(self._process)
-
 	@property
 	def stdin(self) -> SubprocessAsyncWriter | None:
 		if self._process is not None:
@@ -96,4 +94,4 @@ class WineExecutionPolicy(AbstractExecutionPolicy):
 
 	@property
 	def environment(self) -> dict[str, str]:
-		return self._environment
+		return dict(self._environment)

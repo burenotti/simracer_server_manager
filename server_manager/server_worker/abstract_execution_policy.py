@@ -67,12 +67,12 @@ class AbstractExecutionPolicy(abc.ABC):
 
 	@abc.abstractmethod
 	@property
-	def stdin(self) -> AbstractAsyncReader:
+	def stdin(self) -> AbstractAsyncWriter:
 		pass
 
 	@abc.abstractmethod
 	@property
-	def stdout(self) -> AbstractAsyncWriter:
+	def stdout(self) -> AbstractAsyncReader:
 		pass
 
 	@abc.abstractmethod

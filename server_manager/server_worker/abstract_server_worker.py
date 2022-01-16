@@ -30,5 +30,11 @@ class AbstractServerWorker(abc.ABC):
 		pass
 
 	@abc.abstractmethod
-	def set_stream_handler(self, stream: StreamType, *args, **kwargs):
+	def set_stream_handler(
+		self,
+		stream: StreamType,
+		condition: Callable[[...], None],
+		*args,
+		**kwargs
+	):
 		pass

@@ -79,3 +79,11 @@ class AbstractExecutionPolicy(abc.ABC):
 	@property
 	def environment(self) -> dict[str, str]:
 		pass
+
+	@abc.abstractmethod
+	async def wait(self):
+		pass
+
+	@abc.abstractmethod
+	def cancel(self):
+		pass

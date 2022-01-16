@@ -1,9 +1,16 @@
 import abc
+import enum
 
 from asyncio import subprocess
 from typing import Callable
 
 from abstract_execution_policy import AbstractExecutionPolicy
+
+
+class StreamType(enum.Enum):
+	STDOUT = "stdout"
+	STDERR = "stderr"
+	STDIN = "stdin"
 
 
 class AbstractServerWorker(abc.ABC):
@@ -23,8 +30,5 @@ class AbstractServerWorker(abc.ABC):
 		pass
 
 	@abc.abstractmethod
-	async def set_stdout_handler(self, *args, **kwargs) -> Callable[[], None]:
+	def set_stream_handler(self, stream: StreamType, *args, **kwargs):
 		pass
-
-	@abc.abstractmethod
-	async

@@ -95,3 +95,9 @@ class WineExecutionPolicy(AbstractExecutionPolicy):
 	@property
 	def environment(self) -> dict[str, str]:
 		return dict(self._environment)
+
+	def kill(self) -> None:
+		self._process.kill()
+
+	async def wait(self) -> None:
+		await self._process.wait()
